@@ -2,31 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c23ae389-4e25-4682-82b8-8632ca33d282" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/mn-trustmatic.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/node-bitcoin-rpc/.circleci/config.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/node-bitcoin-rpc/.coveralls.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/node-bitcoin-rpc/.mailmap" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/node-bitcoin-rpc/.npmignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/node-bitcoin-rpc/Gulpfile.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/node-bitcoin-rpc/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/node-bitcoin-rpc/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/node-bitcoin-rpc/lib/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/node-bitcoin-rpc/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/node-bitcoin-rpc/test/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/node-bitcoin-rpc/test/nocks/error.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/node-bitcoin-rpc/test/nocks/getbalance1.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/node-bitcoin-rpc/test/nocks/getbalance2.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/node-bitcoin-rpc/test/nocks/getnetworkinfo.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/settings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/LICENSE.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -65,6 +42,7 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="LICENSE" value="1" />
+          <entry key="gitignore" value="179" />
           <entry key="js" value="49" />
           <entry key="json" value="255" />
           <entry key="md" value="1476" />
@@ -75,7 +53,7 @@
           <entry key="JSON" value="255" />
           <entry key="JavaScript" value="49" />
           <entry key="Markdown" value="1476" />
-          <entry key="PLAIN_TEXT" value="1" />
+          <entry key="PLAIN_TEXT" value="180" />
         </counts>
       </usages-collector>
     </session>
@@ -124,8 +102,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+            <state relative-caret-position="150">
+              <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
             </state>
           </provider>
         </entry>
@@ -163,6 +141,7 @@
         <option value="$PROJECT_DIR$/index.js" />
         <option value="$PROJECT_DIR$/LICENSE.md" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -239,12 +218,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1539219320405</updated>
-      <workItem from="1539219329300" duration="7157000" />
+      <workItem from="1539219329300" duration="7906000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7157000" />
+    <option name="totallyTimeSpent" value="7906000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1440" height="810" extended-state="6" />
@@ -329,8 +308,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+        <state relative-caret-position="150">
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
         </state>
       </provider>
     </entry>
