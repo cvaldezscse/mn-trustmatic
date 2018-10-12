@@ -1,0 +1,27 @@
+{
+  "name": "mn-trustmatic",
+  "version": "1.0.0",
+  "description": "This is an application to make all masternode rewards and send it to their respective owners taking, for shared masternodes",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \\\"Error: no test specified\\\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cvaldezissc/masternodes-trustmatic.git"
+  },
+  "keywords": [
+    "shared-masternodes",
+    "automatic-payments",
+    "reward-payment"
+  ],
+  "author": "Carlos Valdez",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cvaldezissc/masternodes-trustmatic/issues"
+  },
+  "homepage": "https://github.com/cvaldezissc/masternodes-trustmatic#readme",
+  "dependencies": {
+    "node-bitcoin-rpc": "^1.1.3"
+  }
+}
