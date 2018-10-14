@@ -1,8 +1,6 @@
 # mn-trustmatic
 A Console application dedicated to distribute the masternode rewards to make it easier and faster to send the respective amount on shared masternodes.
-It was created and tested using $PAC Cryptocurrency, but has features that makes it compatible with others
-
-## Getting Started
+It was created and tested using $PAC Cryptocurrency, but has features that makes it compatible with others.
 
 If you are sharing a masternode with more than one person, is not the fastest way to make the payment of the rewards to each person. So the main motivation of this project is to automate this process and avoid to lose time sending the respective payments to each person
 
