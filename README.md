@@ -1,4 +1,4 @@
-# MN Trustmatic
+# mn-trustmatic
 A Console application dedicated to distribute the masternode rewards to make it easier and faster to send the respective amount on shared masternodes.
 It was created and tested using $PAC Cryptocurrency, but has features that makes it compatible with others
 
@@ -11,9 +11,9 @@ If you are sharing a masternode with more than one person, is not the fastest wa
 What things you need to install the software and how to install them
 
 ```
-* RPC Configured.
-* A Wallet based on Bitcoin and compatible with MN.
-* Some destination addresses saved in the Wallet.
+1. Cryptocurrency Wallet based on Bitcoin and compatible with MN.
+2. RPC Server Configured.
+3. Some destination addresses saved in the Wallet.
 ```
 
 ### Installing
@@ -21,67 +21,72 @@ What things you need to install the software and how to install them
 A step by step series of examples that tell you how to get a development env running
 
 ```
-$ git clone https://github.com/cvaldezissc/masternodes-trustmatic.git
+$ git clone https://github.com/cvaldezissc/mn-trustmatic.git
 $ cd mn-trustmatic
+
+#=====================================================================
+# This is for you to introduce your own configurations, including connection to RPC
+#=====================================================================
+$ nano settings.json
+
 $ npm install
 $ node index.js
 ```
 
-**If you are using:**
-
-* Windows:
-
-    ```
-    until finished
-    ```
-
+### RPC Configuration by OS (tested with $PAC):
+**Disclaimer** those steps can be reproduced in all cryptocurrency wallets that are compatible with masternodes
+   
 * Linux:
 
     ```
-    until finished
+    $ nano ~/.paccoincore/paccoin.conf
     ```
 
-* Mac OS:
+* Mac OS
     ```
-    until finished
+    $ nano ~/Users/your_user/Library/Application Support/PaccoinCore/paccoin.conf
+    ```
+    
+* Windows
+
+    ```
+    Windows Key + R
+    Type %appdata% + enter
+    Go and find paccoin.conf file and open it with any Text Editor
     ```
 
-End with an example of getting some data out of the system or using it for a little demo
+And change the configuration with the next values:
 
-## Issues
+    
+       #=========================================================
+       # Add the configuration to the file
+       #=========================================================
+       rpcuser=yourrpcusername
+       rpcpassword=yourpassword
+       rpcport=7112
+       rpchost=localhost
+    
+    
 
-Explain how to run the automated tests for this system
+## Issues and new features
+
+If you found a new issue please report it to [Project Issues](https://github.com/cvaldezissc/mn-trustmatic/issues/new). 
+
+And if you want to add a new feature, please feel free to make a PR with this template [PR Template](https://github.com/cvaldezissc/mn-trustmatic/tree/master/docs/PR_TEMPLATE.md)
 
 
 
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
 
 ## Built With
 
-* [NodeJS](http://www.dropwizard.io/1.0.2/docs/) - NodeJS
-* [NPM](https://maven.apache.org/) - NPM Packages
-* [MongoDB](https://rometools.github.io/rome/) - MongoDB
+* [Node JS](https://nodejs.org/download/release/v8.11.4/) - NodeJS v8.11.4
+* [NPM](https://stackoverflow.com/a/44880273/6604217) - NPM v5.6.0
+* [Mongo DB](https://docs.mongodb.com/manual/release-notes/4.0/?_ga=2.253379082.2041295965.1539547053-272326873.1539547053#download) - MongoDB v4.0.3
 
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Issues
-If you get some issue, please use this template to have the details there.
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [Tags](https://github.com/cvaldezissc/mn-trustmatic/tags). 
 
 
 ## License
