@@ -4,7 +4,7 @@
   "description": "This is an application to make all masternode rewards and send it to their respective owners taking, for shared masternodes",
   "main": "index.js",
   "scripts": {
-    "test": "echo \\\"Error: no test specified\\\" && exit 1"
+    "test": "echo \\\"Error: no test specified\\\" && exit 0"
   },
   "repository": {
     "type": "git",
