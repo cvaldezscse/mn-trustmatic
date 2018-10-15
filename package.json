@@ -22,6 +22,9 @@
   },
   "homepage": "https://github.com/cvaldezissc/masternodes-trustmatic#readme",
   "dependencies": {
+    "cli-color": "^1.3.0",
+    "fs": "0.0.1-security",
+    "jsonminify": "^0.4.1",
     "node-bitcoin-rpc": "^1.1.3"
   }
 }
