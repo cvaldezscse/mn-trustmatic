@@ -1,4 +1,4 @@
-# mn-trustmatic
+# mn-trustmatic &middot;  [![Circle CI Status](https://circleci.com/gh/cvaldezissc/mn-trustmatic.svg?style=shield)](https://circleci.com/gh/cvaldezissc/mn-trustmatic)
 A Console application dedicated to distribute the masternode rewards to make it easier and faster to send the respective amount on shared masternodes.
 It was created and tested using $PAC Cryptocurrency, but has features that makes it compatible with others.
 
