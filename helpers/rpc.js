@@ -3,13 +3,11 @@ var consoleUI = require('./console');
 var config = require('config');
 
 
-rpc_query.BITCOIND_TIMEOUT = 50000;//config.get('rpcWallet.rpctimeout');
-
-
-function initWalletConnection(){
+function init(){
     try {
-        const credentials = config.get('rpcWallet');
-        rpc_query.init(credentials.rpchost, credentials.rpcport, credentials.rpcuser, credentials.rpcpassword);
+        rpc_query.BITCOIND_TIMEOUT = 50000;
+        const cred = config.get('wallet');
+        rpc_query.init(cred.rpchost, cred.rpcport, cred.rpcuser, cred.rpcpassword);
     }
     catch (e) {
         consoleUI.errorMessage(`There was an error connecting to the RPC Helper: ${e.message}`);
@@ -20,10 +18,10 @@ function initWalletConnection(){
 
 module.exports={
 
-    sendAmount: function(credentials, address, name, amount){
-        initWalletConnection();
+    sendAmount: function(credentials, address, callback){
+        init();
         try {
-            rpc_query.call("sendtoaddress", [address, amount], function (err, res, callback) {
+            rpc_query.call("sendtoaddress", [address, amount], function (err, res) {
                 callback(err, res);
             });
         }
@@ -32,10 +30,10 @@ module.exports={
         }
     },
 
-    setWalletPassPhrase : function(passphrase, timeout=60){
-        initWalletConnection();
+    setWalletPassPhrase : function(passphrase, timeout=60, callback){
+        init();
         try {
-            rpc_query.call("walletpassphrase", [passphrase, timeout], function (err, res, callback) {
+            rpc_query.call("walletpassphrase", [passphrase, timeout], function (err, res) {
                 callback(err, res);
             });
         }
@@ -44,10 +42,10 @@ module.exports={
         }
     },
 
-    walletLock : function(){
-        initWalletConnection();
+    walletLock : function(callback){
+        init();
         try {
-            rpc_query.call("walletlock", [], function (err, res, callback) {
+            rpc_query.call("walletlock", [], function (err, res) {
                 callback(err, res);
             });
         }
@@ -56,8 +54,22 @@ module.exports={
         }
     },
 
+    IsMNRewardHere: function(){
+
+        init();
+        rpc_query.call("getwalletinfo", [], function (err, res) {
+            if(res != null){
+                consoleUI.warningMessage(`THIS IS THE CURRENT AMOUNT ${res.amount}`);
+                if(res.amount > config.get('masternodeRewardAmount')){
+                    consoleUI.warningMessage(`New award to be sent`);
+                }
+            }
+            //callback(err, res);
+        });
+    },
+
     testConnectionToRPC: function(callback){
-        initWalletConnection();
+        init();
         rpc_query.call("getinfo", [], function (err, res) {
             callback(err, res);
         });
@@ -65,3 +77,4 @@ module.exports={
 
 
 };
+

@@ -60,10 +60,14 @@ And change the configuration with the next values:
        #=========================================================
        # Add the configuration to the file
        #=========================================================
-       rpcuser=yourrpcusername
-       rpcpassword=yourpassword
-       rpcport=7112
-       rpchost=localhost
+        rpcuser=rpcuser
+        rpcpassword=YOUR_PASSWORD
+        rpchost=127.0.0.1
+        rpcallowip=127.0.0.1
+        rpcport=8112
+        maxconnections=10
+        server=1
+        listen=1
     
     
 ## Settings File Doc
@@ -75,10 +79,10 @@ Setting Key | Data Type | Default Value | Purpose |
 `symbol` | string | "$PAC"  | The symbol of the cryptocurrency 
 `storeType` | string | "file"  | Idicates where to save the log of transactions, where to save it `file` a single file, `database` for a MongoDB or `none` for not to save anywhere
 `dbSettings` | object | []  | It is for stabilish the base connection to a Mongo DB in case of `storeType` property is set to database.
-`rpcWallet` | object | []  | Credentials to connect this application to a wallet using RPC 
-`walletPassphrase` | string | ""  | The Password for an encrypted wallet in case of it
+`wallet` | object | []  | Credentials to connect this application to a wallet using RPC and details of the passphrase
 `locale` | string | "locale/en.json"  | Path for a file which defines the strings 
 `addresses` | object[] | [] |  They are the addresses to send their respective percentage of the masternode reward with the format: `name:"YOUR_NAME", percentage: 15`.
+`addresses` | number | 10350 |  The amount of each masternode reward (in case of being fixed rate)
 
 
 

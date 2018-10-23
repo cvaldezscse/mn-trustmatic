@@ -6,7 +6,6 @@ var config = require('config');
 async function init() {
 
     H.consoleHelper.separatorMessage();
-    H.consoleHelper.neutralMessage(`${H.stringHelper.getDateFromTimestamp()}`);
     H.consoleHelper.neutralMessage(`Welcome to ${config.get('title').toString().toUpperCase()}`);
     H.consoleHelper.neutralMessage(`Right now we are preparing to ${config.get('coin')} (${config.get('symbol')})`);
     H.consoleHelper.separatorMessage();
@@ -18,16 +17,21 @@ async function init() {
     await H.timeoutHelper.sleep(1000);
     H.consoleHelper.neutralMessage(`${H.stringHelper.getCurrentDatetime()} Testing RPC Credentials...`);
 
-    const testRPC = H.rpcHelper.testConnectionToRPC(receiveResultCallback);
+    //H.rpcHelper.testConnectionToRPC(receiveResultCallback);
 
-    //H.consoleHelper.neutralMessage(`2Starting ${H.stringHelper.getCurrentDatetime()} with the next element`);
+    if(H.operationsHelper.equals100Percent()){
 
+        H.consoleHelper.successMessage(`${H.stringHelper.getCurrentDatetime()} Equals 100%`);
+    }
+    else{
+
+        H.consoleHelper.warningMessage(`${H.stringHelper.getCurrentDatetime()} DOES NOT Equals 100%`);
+    }
 }
 
 function receiveResultCallback(err, res){
-
-    H.consoleHelper.neutralMessage(` err ${JSON.stringify(err)}`);
-    H.consoleHelper.neutralMessage(`res ${JSON.stringify(res)}`);
+    H.consoleHelper.errorMessage(`err ${JSON.stringify(err)}`);
+    H.consoleHelper.successMessage(`res ${JSON.stringify(res)}`);
 }
 
 init();
