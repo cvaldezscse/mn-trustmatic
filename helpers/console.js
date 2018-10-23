@@ -1,4 +1,6 @@
 var clicolor = require('cli-color');
+var readline = require('readline');
+
 
 module.exports= {
 
@@ -16,6 +18,10 @@ module.exports= {
 
     neutralMessage: function(msg){
         console.log(clicolor.white(msg));
+    },
+
+    separatorMessage: function(){
+        console.log(clicolor.white(`---------------------------------------------------------------------------------`));
     }
 
 };

@@ -1,7 +1,7 @@
 var fs = require("fs");
 var jsonminify = require("jsonminify");
 var settings = require("./settings");
-const consoleUI = require('console.helper');
+const consoleUI = require('./console');
 
 
 exports.reloadLocale = function (locale) {

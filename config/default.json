@@ -1,0 +1,36 @@
+{
+  "title": "MN Trustmatic",
+
+  "coin": "Paccoin",
+
+  "symbol": "$PAC",
+
+  "storeType": "file",
+
+  "dbSettings": {
+    "user": "iquidus",
+    "password": "3xp!0reR",
+    "database": "explorerdb",
+    "address": "127.0.0.1",
+    "port": 27017
+  },
+
+  "rpcWallet": {
+    "rpchost": "127.0.0.1",
+    "rpcport": 7112,
+    "rpcuser": "rpcuser",
+    "rpcpassword": "uSXeAeYg9ndu9Rkk",
+    "rpctimeout": 50000
+  },
+
+  "walletPassphrase": "Hola 123!",
+
+  "locale": "locale/en.json",
+
+  "addresses" : [
+    {"name": "CARLOS_VALDEZ_1", "percentage": 15, "address": ""},
+    {"name": "CARLOS_VALDEZ_2", "percentage": 17.9, "address": ""},
+    {"name": "CARLOS_VALDEZ_3", "percentage": 15, "address": ""}
+  ]
+
+}
