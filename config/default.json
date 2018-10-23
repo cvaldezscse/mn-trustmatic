@@ -1,0 +1,39 @@
+{
+  "title": "MN Trustmatic",
+
+  "coin": "Paccoin",
+
+  "symbol": "$PAC",
+
+  "storeType": "file",
+
+  "dbSettings": {
+    "user": "iquidus",
+    "password": "3xp!0reR",
+    "database": "explorerdb",
+    "address": "127.0.0.1",
+    "port": 27017
+  },
+
+  "wallet": {
+    "rpchost": "127.0.0.1",
+    "rpcport": 8112,
+    "rpcuser": "rpcuser",
+    "rpcpassword": "uSXeAeYg9ndu9Rkk",
+    "rpctimeout": 50000,
+    "passphrase": "Hola 123!"
+  },
+
+  "locale": "locale/en.json",
+
+  "addresses" : [
+    {"name": "CRISTIAN_RIVERA", "percentage": 26, "address": "PQxS5k6HXQGbbE9sSwAzVhpX5CcHjCRmLg"},
+    {"name": "JONATAN_SALDIVAR", "percentage": 30, "address": "PTAUN5EaA6CaA6ctQpVbXFrtcdKmbNoTqm"},
+    {"name": "CARLOS_VALDEZ", "percentage": 30, "address": "PVaDQtzP5j3rvD6hwZHDMjuszbJbcUzS8d"},
+    {"name": "ROGELIO_SANCHEZ", "percentage": 10, "address": "PVfutmeghkRN5WsYq7B3wbUJkNSeNfwcL4"},
+    {"name": "JOSE_RAMIREZ", "percentage": 4, "address": "PXPMuXmtRoQwoC94gZmvpGKKta6JsHfasd"}
+  ],
+
+  "masternodeRewardAmount": 10350
+
+}
