@@ -7,6 +7,8 @@
 
   "storeType": "file",
 
+  "filePathAndName":"transactions.txt",
+
   "dbSettings": {
     "user": "iquidus",
     "password": "3xp!0reR",

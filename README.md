@@ -10,7 +10,7 @@ What things you need to install the software and how to install them
 
 ```
 1. Cryptocurrency Wallet based on Bitcoin and compatible with MN.
-2. RPC Server Configured.
+2. RPC Server Configured (Instructions (Instructions detailed below)
 3. Some destination addresses saved in the Wallet.
 4. It is important that your computer has the correct hour according to the timezone
 ```
@@ -78,11 +78,12 @@ Setting Key | Data Type | Default Value | Purpose |
 `coin` | string | "Paccoin"  | It is to have the name of the of the cryptocurrency to label 
 `symbol` | string | "$PAC"  | The symbol of the cryptocurrency 
 `storeType` | string | "file"  | Idicates where to save the log of transactions, where to save it `file` a single file, `database` for a MongoDB or `none` for not to save anywhere
+`filePathAndName` | string | "transactions.txt"  | Is the path of the destination file where we are going to save the registry of the sent transactions
 `dbSettings` | object | []  | It is for stabilish the base connection to a Mongo DB in case of `storeType` property is set to database.
 `wallet` | object | []  | Credentials to connect this application to a wallet using RPC and details of the passphrase
 `locale` | string | "locale/en.json"  | Path for a file which defines the strings 
 `addresses` | object[] | [] |  They are the addresses to send their respective percentage of the masternode reward with the format: `name:"YOUR_NAME", percentage: 15`.
-`addresses` | number | 10350 |  The amount of each masternode reward (in case of being fixed rate)
+`masternodeRewardAmount` | number | 10350 |  The amount of each masternode reward (in case of being fixed rate)
 
 
 
@@ -106,11 +107,11 @@ And if you want to add a new feature, please feel free to make a PR with this te
 ## To Do List
 - [x] Generate config file readable in all the project.
 - [x] Connect though RPC to a wallet
-- [ ] Save transaction details in a file
-- [ ] Save transaction details in MongoDB
+- [x] Save in a file
+- [ ] Save in MongoDB
 - [ ] Save transaction details in a SQL DB (would need a script initializer)
 - [ ] Add Locale translations
-- [ ] Add stronge validations when getting the settings
+- [ ] Add stronger validations when getting the settings
 - [ ] Add a wizard, when you run the program by the first time
 - [ ] See how to obtain the addresses automatically from the wallet address book, not to dumpwallet command because it is dangerous to have the private key
 - [ ] Adapt the best JS (ECMAScript 2017) practices to the project
