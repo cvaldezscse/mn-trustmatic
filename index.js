@@ -42,10 +42,9 @@ async function init() {
                         H.console.nMsg(`${datetime} Trying to pay to${nameToSend} to the address: ${addressToSend} the amount of ${amountToSend} ${config.get('symbol')}`);
 
                         H.rpc.sendAmount(addressToSend, amountToSend, function(err, res){
-                            if(err != null){
-                                H.console.wMsg(`this is the res: ${JSON.stringify(res)}`);
-                                //H.console.sMsg(`${datetime} Paid to${nameToSend} the amount of ${amountToSend} ${config.get('symbol')}`);
-
+                            if(!err){
+                                let txid = res.result;
+                                H.console.sMsg(`${datetime} Paid to ${nameToSend} the amount of ${amountToSend} ${config.get('symbol')} with the txid: ${txid}`);
                             }
                             else{
                                 H.console.eMsg(`${datetime} There was an error trying to pay to${nameToSend} with the next error: ${err.message}`);
