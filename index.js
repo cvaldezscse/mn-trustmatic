@@ -1,9 +1,6 @@
 var H = require('./helpers');
 var config = require('config');
 
-let txArray = [];
-let amount = 100;
-
 async function init() {
 
     H.console.separatorMessage();
@@ -40,26 +37,20 @@ async function init() {
                             ,datetime = H.string.getCurrentDatetime();
 
                         H.console.nMsg(`${datetime} Trying to pay to${nameToSend} to the address: ${addressToSend} the amount of ${amountToSend} ${config.get('symbol')}`);
-
                         H.rpc.sendAmount(addressToSend, amountToSend, function(err, res){
                             if(!err){
-                                let txid = res.result;
-                                H.console.sMsg(`${datetime} Paid to ${nameToSend} the amount of ${amountToSend} ${config.get('symbol')} with the txid: ${txid}`);
+                                let txid = res.result
+                                  , strMessage = `${datetime} Paid to ${nameToSend} the amount of ${amountToSend} ${config.get('symbol')} with the txid: ${txid}`
+                                  , strFile = `${datetime} Paid to ${nameToSend} the amount of ${amountToSend} ${config.get('symbol')} to the address: ${addressToSend} with the txid: ${txid}`;
+                                H.file.appendSingleToFile(strFile);
+                                H.console.sMsg(strMessage);
+
                             }
                             else{
-                                H.console.eMsg(`${datetime} There was an error trying to pay to${nameToSend} with the next error: ${err.message}`);
+                                H.console.eMsg(`${datetime} There was an error trying to pay to ${nameToSend} with the next error: ${err.message}`);
                             }
-
                         });
-
-
                     }
-
-
-
-
-
-
 
                 }
                 else {
@@ -67,29 +58,9 @@ async function init() {
                 }
             }
         });
-
-
-        // let balance = amount;
-        //
-        // H.console.nMsg(`this is the balance ${balance}`);
-        // if(balance > config.get('blockedAmount')){
-        //
-        //     H.console.nMsg(`${H.string.getCurrentDatetime()} Getting rewards received...`);
-        //     let rewardsNumber = H.operations.getNumberOfRewardsReceived(balance);
-        //
-        //     await H.timeout.sleep(1000);
-        //     H.console.nMsg(`${H.string.getCurrentDatetime()} you have ${rewardsNumber} numbers of rewards to pay...`);
-        //
-        //
-        // }
-        // else {
-        //     H.console.eMsg(`There is not a masternode here, finishing it`);
-        // }
-
     }
     else {
-
-        H.console.wMsg(`${H.string.getCurrentDatetime()} DOES NOT Equals 100%, you need to add complete 100% in the addresses ${empty}`);
+        H.console.wMsg(`${H.string.getCurrentDatetime()} DOES NOT Equals 100%, you need to add complete 100% in the addresses`);
     }
 }
 

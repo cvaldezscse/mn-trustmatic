@@ -10,20 +10,10 @@ function isFileConfigured(){
 }
 
 module.exports ={
-  appendToFile: function(dataArray) {
+    
+  appendArrayToFile: function(dataArray) {
       if (isFileConfigured()){
-
-          //First alternative
-          //var fileStream = fs.createWriteStream(pathWithFilename, {'flags': 'a'});
-
-          //for(var i = 0; i < dataArray.length; i++){
-          //    fileStream.write(dataArray[i]);
-          //}
-          //fileStream.end();
-
-
-          var mainPath = config.get('filePathAndName');
-          //Second Alternative
+          let mainPath = config.get('filePathAndName');
           for(var i = 0; i < dataArray.length; i++) {
               fs.appendFile(mainPath, dataArray[i] + '\n', function (err) {
                   if (err) {
@@ -38,5 +28,21 @@ module.exports ={
           consoleHelper.wMsg(`Your configuration file is not prepared to be saved in a file`);
       }
 
+  },
+
+  appendSingleToFile: function(data){
+      if (isFileConfigured()) {
+          let mainPath = config.get('filePathAndName');
+          fs.appendFile(mainPath, data + '\n', function (err) {
+              if (err) {
+                  consoleHelper.eMsg(`There was an error saving into the document: ${mainPath}`);
+                  throw err;
+              }
+          });
+      }
+      else{
+          consoleHelper.wMsg(`Your configuration file is not prepared to be saved in a file`);
+      }
   }
+
 };
