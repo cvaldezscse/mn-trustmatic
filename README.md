@@ -10,7 +10,7 @@ What things you need to install the software and how to install them
 
 ```
 1. Cryptocurrency Wallet based on Bitcoin and compatible with MN.
-2. RPC Server Configured (Instructions (Instructions detailed below)
+2. RPC Server Configured (Instructions detailed below)
 3. Some destination addresses saved in the Wallet.
 4. It is important that your computer has the correct hour according to the timezone
 ```
@@ -24,7 +24,7 @@ $ git clone https://github.com/cvaldezissc/mn-trustmatic.git
 $ cd mn-trustmatic
 
 #=====================================================================
-# This is for you to introduce your own configurations, including connection to RPC
+# This is for you to introduce your own configurations
 #=====================================================================
 $ nano config/default.json
 
@@ -55,7 +55,6 @@ $ node index.js
     ```
 
 And change the configuration with the next values:
-
     
        #=========================================================
        # Add the configuration to the file
@@ -83,8 +82,10 @@ Setting Key | Data Type | Default Value | Purpose |
 `wallet` | object | []  | Credentials to connect this application to a wallet using RPC and details of the passphrase
 `locale` | string | "locale/en.json"  | Path for a file which defines the strings 
 `addresses` | object[] | [] |  They are the addresses to send their respective percentage of the masternode reward with the format: `name:"YOUR_NAME", percentage: 15`.
+`blockedAmount` | number | 501000 | Represents the base amount to have locked and enable the current masternode
 `masternodeRewardAmount` | number | 10350 |  The amount of each masternode reward (in case of being fixed rate)
-
+`mnOwnerFee` | number | 1.50 | Is the percentage of the reward to be sent to the MN owner for making this send
+`mnOwnerAddress`| string | "" | Is the destination address from the masternode owner to pay the fee of managing the managing the node
 
 
 ## Issues and new features
@@ -111,8 +112,11 @@ And if you want to add a new feature, please feel free to make a PR with this te
 - [ ] Save in MongoDB
 - [ ] Save transaction details in a SQL DB (would need a script initializer)
 - [ ] Add Locale translations
+- [ ] Encrypt the information of the settings file to be more secure and not easily changed
 - [ ] Add stronger validations when getting the settings
+- [ ] Make a reporting system to get how much is earned by each person
 - [ ] Add a wizard, when you run the program by the first time
+- [ ] Investigate on how to convert this to a daemon or system service to make it automatically each time period``
 - [ ] See how to obtain the addresses automatically from the wallet address book, not to dumpwallet command because it is dangerous to have the private key
 - [ ] Adapt the best JS (ECMAScript 2017) practices to the project
 

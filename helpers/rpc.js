@@ -18,7 +18,7 @@ function init(){
 
 module.exports={
 
-    sendAmount: function(credentials, address, callback){
+    sendAmount: function(address, callback){
         init();
         try {
             rpc_query.call("sendtoaddress", [address, amount], function (err, res) {
@@ -73,7 +73,15 @@ module.exports={
         rpc_query.call("getinfo", [], function (err, res) {
             callback(err, res);
         });
+    },
+
+    getBalance: function(callback) {
+        init();
+        rpc_query.call("getbalance", [], function (err, res) {
+            callback(err, res);
+        });
     }
+
 
 
 };

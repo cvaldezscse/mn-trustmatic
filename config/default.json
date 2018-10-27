@@ -36,6 +36,12 @@
     {"name": "JOSE_RAMIREZ", "percentage": 4, "address": "PXPMuXmtRoQwoC94gZmvpGKKta6JsHfasd"}
   ],
 
-  "masternodeRewardAmount": 10350
+  "blockedAmount": 501000,
+
+  "masternodeRewardAmount": 10350,
+
+  "mnOwnerFee": 1.50,
+
+  "mnOwnerAddress": ""
 
 }
