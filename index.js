@@ -7,40 +7,53 @@ let amount = 100;
 async function init() {
 
     H.console.separatorMessage();
-    H.console.neutralMessage(`Welcome to ${config.get('title').toString().toUpperCase()}`);
-    H.console.neutralMessage(`Right now we are preparing to ${config.get('coin')} (${config.get('symbol')})`);
+    H.console.nMsg(`Welcome to ${config.get('title').toString().toUpperCase()}`);
+    H.console.nMsg(`Right now we are preparing to ${config.get('coin')} (${config.get('symbol')})`);
     H.console.separatorMessage();
 
-    H.console.neutralMessage(`${H.string.getCurrentDatetime()} Starting the Log...`);
+    H.console.nMsg(`${H.string.getCurrentDatetime()} Starting the Log...`);
     await H.timeout.sleep(1000);
-    H.console.neutralMessage(`${H.string.getCurrentDatetime()} Analyzing your settings...`);
+    H.console.nMsg(`${H.string.getCurrentDatetime()} Analyzing your settings...`);
     await H.timeout.sleep(1000);
-    H.console.neutralMessage(`${H.string.getCurrentDatetime()} Testing RPC Credentials...`);
+    H.console.nMsg(`${H.string.getCurrentDatetime()} Testing RPC Credentials...`);
 
 
     if (H.operations.equals100Percent()) {
 
-        H.console.successMessage(`${H.string.getCurrentDatetime()} We're ready to pay to the 100% of the reward`);
+        H.console.sMsg(`${H.string.getCurrentDatetime()} We're ready to pay to the 100% of the reward`);
 
         H.rpc.getBalance(function (err, resBalance) {
             if (err == null) {
                 const balance = resBalance.result;
-                H.console.neutralMessage(`${H.string.getCurrentDatetime()} You have amount ${config.get('symbol')}: ${balance} available`);
+                H.console.nMsg(`${H.string.getCurrentDatetime()} You have amount ${config.get('symbol')}: ${balance} available`);
                 if (balance > config.get('blockedAmount')) {
-                    H.console.neutralMessage(`${H.string.getCurrentDatetime()} Getting rewards received...`);
+                    H.console.nMsg(`${H.string.getCurrentDatetime()} Getting rewards received...`);
                     let rewardsNumber = H.operations.getNumberOfRewardsReceived(balance);
-                    H.console.neutralMessage(`${H.string.getCurrentDatetime()} you have ${rewardsNumber} numbers of rewards to pay...`);
+                    H.console.nMsg(`${H.string.getCurrentDatetime()} you have ${rewardsNumber} numbers of rewards to pay...`);
 
-                    //Get amounts
                     let listOfAddress = config.get('addresses');
-
-                    H.console.neutralMessage(`${H.string.getCurrentDatetime()} Paying now...`);
+                    H.console.nMsg(`${H.string.getCurrentDatetime()} Paying now...`);
                     for(var i = 0; i < listOfAddress.length; i++){
-                        H.console.neutralMessage(`${H.string.getCurrentDatetime()} Paying to ${listOfAddress[i].name} to the address: ${listOfAddress[i].address} ...`);
-
                         let amountToSend = H.operations.getAmountToBeSent(listOfAddress[i].percentage)
-                        H.console.successMessage(`To be sent is: ${amountToSend}`);
-                        //H.rpc.sendAmount()
+                            ,nameToSend = listOfAddress[i].name
+                            ,addressToSend = listOfAddress[i].address
+                            ,datetime = H.string.getCurrentDatetime();
+
+                        H.console.nMsg(`${datetime} Trying to pay to${nameToSend} to the address: ${addressToSend} the amount of ${amountToSend} ${config.get('symbol')}`);
+
+                        H.rpc.sendAmount(addressToSend, amountToSend, function(err, res){
+                            if(err != null){
+                                H.console.wMsg(`this is the res: ${JSON.stringify(res)}`);
+                                //H.console.sMsg(`${datetime} Paid to${nameToSend} the amount of ${amountToSend} ${config.get('symbol')}`);
+
+                            }
+                            else{
+                                H.console.eMsg(`${datetime} There was an error trying to pay to${nameToSend} with the next error: ${err.message}`);
+                            }
+
+                        });
+
+
                     }
 
 
@@ -51,7 +64,7 @@ async function init() {
 
                 }
                 else {
-                    H.console.errorMessage(`${H.string.getCurrentDatetime()} There is not a masternode here, finishing it`);
+                    H.console.eMsg(`${H.string.getCurrentDatetime()} There is not a masternode here, finishing it`);
                 }
             }
         });
@@ -59,35 +72,35 @@ async function init() {
 
         // let balance = amount;
         //
-        // H.console.neutralMessage(`this is the balance ${balance}`);
+        // H.console.nMsg(`this is the balance ${balance}`);
         // if(balance > config.get('blockedAmount')){
         //
-        //     H.console.neutralMessage(`${H.string.getCurrentDatetime()} Getting rewards received...`);
+        //     H.console.nMsg(`${H.string.getCurrentDatetime()} Getting rewards received...`);
         //     let rewardsNumber = H.operations.getNumberOfRewardsReceived(balance);
         //
         //     await H.timeout.sleep(1000);
-        //     H.console.neutralMessage(`${H.string.getCurrentDatetime()} you have ${rewardsNumber} numbers of rewards to pay...`);
+        //     H.console.nMsg(`${H.string.getCurrentDatetime()} you have ${rewardsNumber} numbers of rewards to pay...`);
         //
         //
         // }
         // else {
-        //     H.console.errorMessage(`There is not a masternode here, finishing it`);
+        //     H.console.eMsg(`There is not a masternode here, finishing it`);
         // }
 
     }
     else {
 
-        H.console.warningMessage(`${H.string.getCurrentDatetime()} DOES NOT Equals 100%, you need to add complete 100% in the addresses ${empty}`);
+        H.console.wMsg(`${H.string.getCurrentDatetime()} DOES NOT Equals 100%, you need to add complete 100% in the addresses ${empty}`);
     }
 }
 
 async function receiveResultCallback(err, res) {
     if (err == null) {
 
-        H.console.successMessage(`res ${res.result}`);
+        H.console.sMsg(`res ${res.result}`);
     }
     else {
-        H.console.errorMessage(`err ${JSON.stringify(err)}`);
+        H.console.eMsg(`err ${JSON.stringify(err)}`);
         return -1;
     }
 }

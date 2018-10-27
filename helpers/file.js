@@ -27,15 +27,15 @@ module.exports ={
           for(var i = 0; i < dataArray.length; i++) {
               fs.appendFile(mainPath, dataArray[i] + '\n', function (err) {
                   if (err) {
-                      consoleHelper.errorMessage(`There was an error saving into the document: ${mainPath}`);
+                      consoleHelper.eMsg(`There was an error saving into the document: ${mainPath}`);
                       throw err;
                   }
               });
           }
-          consoleHelper.successMessage(`${stringHelper.getDateFromTimestamp()} Successfully added to the document in ${mainPath}`)
+          consoleHelper.sMsg(`${stringHelper.getDateFromTimestamp()} Successfully added to the document in ${mainPath}`)
       }
       else {
-          consoleHelper.warningMessage(`Your configuration file is not prepared to be saved in a file`);
+          consoleHelper.wMsg(`Your configuration file is not prepared to be saved in a file`);
       }
 
   }

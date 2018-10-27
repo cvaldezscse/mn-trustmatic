@@ -10,7 +10,7 @@ function init(){
         rpc_query.init(cred.rpchost, cred.rpcport, cred.rpcuser, cred.rpcpassword);
     }
     catch (e) {
-        consoleUI.errorMessage(`There was an error connecting to the RPC Helper: ${e.message}`);
+        consoleUI.eMsg(`There was an error connecting to the RPC Helper: ${e.message}`);
     }
 }
 
@@ -18,7 +18,7 @@ function init(){
 
 module.exports={
 
-    sendAmount: function(address, callback){
+    sendAmount: function(address, amount, callback){
         init();
         try {
             rpc_query.call("sendtoaddress", [address, amount], function (err, res) {
@@ -26,7 +26,7 @@ module.exports={
             });
         }
         catch (e) {
-            consoleUI.errorMessage(`There was an error sending The Amount: ${e.message}`);
+            consoleUI.eMsg(`There was an error sending The Amount: ${e.message}`);
         }
     },
 
@@ -38,7 +38,7 @@ module.exports={
             });
         }
         catch (e) {
-            consoleUI.errorMessage(`There was an error setting the wallet passprase : ${e.message}`);
+            consoleUI.eMsg(`There was an error setting the wallet passprase : ${e.message}`);
         }
     },
 
@@ -50,7 +50,7 @@ module.exports={
             });
         }
         catch (e) {
-            consoleUI.errorMessage(`There was an error locking the wallet: ${e.message}`);
+            consoleUI.eMsg(`There was an error locking the wallet: ${e.message}`);
         }
     },
 
@@ -59,9 +59,9 @@ module.exports={
         init();
         rpc_query.call("getwalletinfo", [], function (err, res) {
             if(res != null){
-                consoleUI.warningMessage(`THIS IS THE CURRENT AMOUNT ${res.amount}`);
+                consoleUI.wMsg(`THIS IS THE CURRENT AMOUNT ${res.amount}`);
                 if(res.amount > config.get('masternodeRewardAmount')){
-                    consoleUI.warningMessage(`New award to be sent`);
+                    consoleUI.wMsg(`New award to be sent`);
                 }
             }
             //callback(err, res);

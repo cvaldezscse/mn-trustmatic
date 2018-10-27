@@ -1,22 +1,21 @@
 var clicolor = require('cli-color');
-var readline = require('readline');
 
 
 module.exports= {
 
-    successMessage : function(msg) {
+    sMsg : function(msg) {
         console.log(clicolor.green(msg));
     },
 
-    errorMessage: function(msg) {
+    eMsg: function(msg) {
         console.log(clicolor.red(msg));
     },
 
-    warningMessage: function(msg){
+    wMsg: function(msg){
         console.log(clicolor.yellow(msg));
     },
 
-    neutralMessage: function(msg){
+    nMsg: function(msg){
         console.log(clicolor.white(msg));
     },
 

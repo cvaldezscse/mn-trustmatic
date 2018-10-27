@@ -21,7 +21,7 @@ module.exports={
   },
 
   getAmountToBeSent: function(percentage){
-      return (percentage/100) * (baseReward);
+      return ((percentage/100) * (baseReward)).toFixed(2);
   },
 
   getOwnerFee: function(amountToSend){
