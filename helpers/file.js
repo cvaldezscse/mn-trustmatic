@@ -10,7 +10,7 @@ function isFileConfigured(){
 }
 
 module.exports ={
-    
+
   appendArrayToFile: function(dataArray) {
       if (isFileConfigured()){
           let mainPath = config.get('filePathAndName');

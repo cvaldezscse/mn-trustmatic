@@ -64,7 +64,6 @@ module.exports={
                     consoleUI.wMsg(`New award to be sent`);
                 }
             }
-            //callback(err, res);
         });
     },
 
