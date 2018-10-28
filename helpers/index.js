@@ -1,13 +1,15 @@
-var rpcHelper = require('./rpc');
-var stringHelper = require('./string');
-var consoleHelper = require('./console');
-var timeoutHelper = require('./promise');
-var operationsHelper = require('./operations');
+var rpc = require('./rpc');
+var string = require('./string');
+var console = require('./console');
+var timeout = require('./promise');
+var operations = require('./operations');
+var file = require('./file');
 
 module.exports={
-    rpcHelper,
-    stringHelper,
-    consoleHelper,
-    timeoutHelper,
-    operationsHelper
+    rpc,
+    string,
+    console,
+    timeout,
+    operations,
+    file
 };

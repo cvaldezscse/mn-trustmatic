@@ -1,37 +1,60 @@
-var H = require('./helpers');
-var config = require('config');
-
-
+let H = require('./helpers');
+let conf = require('config');
 
 async function init() {
 
-    H.consoleHelper.separatorMessage();
-    H.consoleHelper.neutralMessage(`Welcome to ${config.get('title').toString().toUpperCase()}`);
-    H.consoleHelper.neutralMessage(`Right now we are preparing to ${config.get('coin')} (${config.get('symbol')})`);
-    H.consoleHelper.separatorMessage();
+    H.console.separatorMessage();
+    H.console.nMsg(`Welcome to ${conf.get('title').toString().toUpperCase()}`);
+    H.console.nMsg(`Right now we are preparing to ${conf.get('coin')} (${conf.get('symbol')})`);
+    H.console.separatorMessage();
 
+    H.console.nMsg(`${H.string.getCurrentDatetime()} Starting the Log...`);
+    await H.timeout.sleep(1000);
+    H.console.nMsg(`${H.string.getCurrentDatetime()} Analyzing your settings...`);
+    await H.timeout.sleep(1000);
+    H.console.nMsg(`${H.string.getCurrentDatetime()} Testing RPC Credentials...`);
 
-    H.consoleHelper.neutralMessage(`${H.stringHelper.getCurrentDatetime()} Starting the Log...`);
-    await H.timeoutHelper.sleep(1000);
-    H.consoleHelper.neutralMessage(`${H.stringHelper.getCurrentDatetime()} Analyzing your settings...`);
-    await H.timeoutHelper.sleep(1000);
-    H.consoleHelper.neutralMessage(`${H.stringHelper.getCurrentDatetime()} Testing RPC Credentials...`);
+    if (H.operations.equals100Percent()) {
+        H.console.nMsg(`${H.string.getCurrentDatetime()} We're ready to pay to the 100% of the reward`);
+        H.rpc.getBalance(function (err, resBalance) {
+            if (err == null) {
+                const balance = resBalance.result;
+                H.console.nMsg(`${H.string.getCurrentDatetime()} You have amount ${conf.get('symbol')}: ${balance} available`);
+                if (balance > conf.get('blockedAmount')) {
+                    H.console.nMsg(`${H.string.getCurrentDatetime()} Getting rewards received...`);
+                    let rewardsNumber = H.operations.getNumberOfRewardsReceived(balance);
+                    H.console.nMsg(`${H.string.getCurrentDatetime()} you have ${rewardsNumber}  of rewards to pay...`);
+                    let listOfAddress = conf.get('addresses');
+                    H.console.nMsg(`${H.string.getCurrentDatetime()} Paying now...`);
+                    for(let i = 0; i < listOfAddress.length; i++){
+                        let amountToSend = H.operations.getAmountToBeSent(listOfAddress[i].percentage)
+                            ,nameToSend = listOfAddress[i].name
+                            ,addressToSend = listOfAddress[i].address
+                            ,datetime = H.string.getCurrentDatetime();
 
-    //H.rpcHelper.testConnectionToRPC(receiveResultCallback);
-
-    if(H.operationsHelper.equals100Percent()){
-
-        H.consoleHelper.successMessage(`${H.stringHelper.getCurrentDatetime()} Equals 100%`);
+                         H.rpc.sendAmount(addressToSend, amountToSend, function(err, res){
+                            if(!err){
+                                let txid = res.result
+                                  , strMessage = `${datetime} Paid to ${nameToSend} the amount of ${amountToSend} ${conf.get('symbol')} with the txid: ${txid}`
+                                  , strFile = `${datetime} Paid to ${nameToSend} the amount of ${amountToSend} ${conf.get('symbol')} to the address: ${addressToSend} with the txid: ${txid}`;
+                                H.file.appendSingleLineToFile(strFile);
+                                H.console.sMsg(strMessage);
+                            }
+                            else{
+                                H.console.eMsg(`${datetime} There was an error trying to pay to ${nameToSend} with the next error: ${err.message}`);
+                            }
+                        });
+                    }
+                }
+                else {
+                    H.console.eMsg(`${H.string.getCurrentDatetime()} There is not a masternode here, finishing it`);
+                }
+            }
+        });
     }
-    else{
-
-        H.consoleHelper.warningMessage(`${H.stringHelper.getCurrentDatetime()} DOES NOT Equals 100%`);
+    else {
+        H.console.wMsg(`${H.string.getCurrentDatetime()} DOES NOT Equals 100%, you need to add complete 100% in the addresses`);
     }
-}
-
-function receiveResultCallback(err, res){
-    H.consoleHelper.errorMessage(`err ${JSON.stringify(err)}`);
-    H.consoleHelper.successMessage(`res ${JSON.stringify(res)}`);
 }
 
 init();

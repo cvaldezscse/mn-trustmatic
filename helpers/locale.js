@@ -12,7 +12,7 @@ exports.reloadLocale = function (locale) {
     try{
         localeStr = fs.readFileSync(localeFilename).toString();
     } catch(e){
-        consoleUI.warningMessage('Locale file not found. Continuing using defaults!');
+        consoleUI.wMsg('Locale file not found. Continuing using defaults!');
     }
 
 
@@ -23,7 +23,7 @@ exports.reloadLocale = function (locale) {
             lsettings = JSON.parse(localeStr);
         }
     }catch(e){
-        consoleUI.errorMessage('There was an error processing your locale file: '+e.message);
+        consoleUI.eMsg('There was an error processing your locale file: '+e.message);
         process.exit(1);
     }
 
@@ -31,13 +31,13 @@ exports.reloadLocale = function (locale) {
     for(var i in lsettings)
     {
         if(i.charAt(0).search("[a-z]") !== 0) {
-            consoleUI.warningMessage("Settings should start with a low character: '" + i + "'");
+            consoleUI.wMsg("Settings should start with a low character: '" + i + "'");
         }
 
         if(exports[i] !== undefined) {
             exports[i] = lsettings[i];
         } else {
-            consoleUI.warningMessage("Unknown Setting: '" + i + "'. This setting doesn't exist or it was removed");
+            consoleUI.wMsg("Unknown Setting: '" + i + "'. This setting doesn't exist or it was removed");
         }
     }
 
