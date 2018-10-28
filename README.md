@@ -26,6 +26,7 @@ $ cd mn-trustmatic
 #=====================================================================
 # This is for you to introduce your own configurations
 #=====================================================================
+$ cp config/default_example.json config/default.json
 $ nano config/default.json
 
 $ npm install
@@ -79,9 +80,9 @@ Setting Key | Data Type | Default Value | Purpose |
 `storeType` | string | "file"  | Idicates where to save the log of transactions, where to save it `file` a single file, `database` for a MongoDB or `none` for not to save anywhere
 `filePathAndName` | string | "transactions.txt"  | Is the path of the destination file where we are going to save the registry of the sent transactions
 `dbSettings` | object | []  | It is for stabilish the base connection to a Mongo DB in case of `storeType` property is set to database.
-`wallet` | object | []  | Credentials to connect this application to a wallet using RPC and details of the passphrase
+`wallet` | object | []  | Credentials to connect this application to a wallet using RPC and details of the passphrase with the format `rpchost: localhost, rpcport: 7112, rpcuser: YOUR_RPC_USER, rpcpassword: YOUR_RPC_PASS, timeout: 60, passphrase: YOUR_WALLET_PASS` 
 `locale` | string | "locale/en.json"  | Path for a file which defines the strings 
-`addresses` | object[] | [] |  They are the addresses to send their respective percentage of the masternode reward with the format: `name:"YOUR_NAME", percentage: 15`.
+`addresses` | object[] | [] |  They are the addresses to send their respective percentage of the masternode reward with the format: `name:"YOUR_NAME", percentage: 15, address:"YOUR_COIND_ADDRESS"`.
 `blockedAmount` | number | 501000 | Represents the base amount to have locked and enable the current masternode
 `masternodeRewardAmount` | number | 10350 |  The amount of each masternode reward (in case of being fixed rate)
 `mnOwnerFee` | number | 1.50 | Is the percentage of the reward to be sent to the MN owner for making this send

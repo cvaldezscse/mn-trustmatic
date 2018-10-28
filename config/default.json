@@ -22,8 +22,8 @@
     "rpcport": 8112,
     "rpcuser": "rpcuser",
     "rpcpassword": "uSXeAeYg9ndu9Rkk",
-    "rpctimeout": 50000,
-    "passphrase": "Hola 123!"
+    "timeout": 50000,
+    "passphrase": "YOUR_PASSWORD"
   },
 
   "locale": "locale/en.json",

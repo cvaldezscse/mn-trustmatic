@@ -30,7 +30,7 @@ module.exports ={
 
   },
 
-  appendSingleToFile: function(data){
+  appendSingleLineToFile: function(data){
       if (isFileConfigured()) {
           let mainPath = config.get('filePathAndName');
           fs.appendFile(mainPath, data + '\n', function (err) {

@@ -1,0 +1,47 @@
+{
+  "title": "MN Trustmatic",
+
+  "coin": "Paccoin",
+
+  "symbol": "$PAC",
+
+  "storeType": "file",
+
+  "filePathAndName":"transactions.txt",
+
+  "dbSettings": {
+    "user": "yourDBUser",
+    "password": "yourDBPassword",
+    "database": "database",
+    "address": "127.0.0.1",
+    "port": 27017
+  },
+
+  "wallet": {
+    "rpchost": "127.0.0.1",
+    "rpcport": 7112,
+    "rpcuser": "rpcuser",
+    "rpcpassword": "YOUR_RPC_PASSWORD",
+    "timeout": 50000,
+    "passphrase": "YOUR_PASSWORD"
+  },
+
+  "locale": "locale/en.json",
+
+  "addresses" : [
+    {"name": "PERSON_1", "percentage": 14.5, "address": "qSBMctToYARiRBcgFGLx5RvWUghq91Bxqz"},
+    {"name": "PERSON_2", "percentage": 31.13, "address": "qSBMctToYARiRBcgFGLx5RvWUghq91Bxqz"},
+    {"name": "PERSON_3", "percentage": 5.63, "address": "qSBMctToYARiRBcgFGLx5RvWUghq91Bxqz"},
+    {"name": "PERSON_4", "percentage": 26.89, "address": "qSBMctToYARiRBcgFGLx5RvWUghq91Bxqz"},
+    {"name": "PERSON_5", "percentage": 21.85, "address": "qSBMctToYARiRBcgFGLx5RvWUghq91Bxqz"}
+  ],
+
+  "blockedAmount": 501000,
+
+  "masternodeRewardAmount": 10350,
+
+  "mnOwnerFee": 0,
+
+  "mnOwnerAddress": "qSBMctToYARiRBcgFGLx5RvWUghq91Bxqz"
+
+}
