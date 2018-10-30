@@ -1,5 +1,23 @@
 let H = require('./helpers');
 let conf = require('config');
+let currentAddressPosition = 0;
+
+function processPayments(position){
+    currentAddressPosition = position;
+    let addressToPay = conf.get('addresses')[position];
+
+    if(addressToPay != null){
+
+    }
+
+}
+
+function initProcess(){
+
+}
+
+
+
 
 async function init() {
 
@@ -40,6 +58,23 @@ async function init() {
                             , datetime = H.string.getCurrentDatetime();
 
                         H.rpc.sendAmount(addressToSend, amountToSend, function (err, res) {
+
+
+                            // The fee changed
+                            let fee = H.operations.getOwnerFee(amountToSend);
+                            let ownerAddress = conf.get('mnOwnerAddress');
+                            H.console.wMsg(`${datetime} This is the fee: (${fee}) of the ${amountToSend}`);
+                            H.console.nMsg(`${datetime} Send successfully, now generating the fee: ${fee} ${conf.get('symbol')} to send to the owner`);
+
+                            H.rpc.sendAmount(ownerAddress, fee, function(err, res){
+                                if(!err){
+                                    let txid = res.result,
+                                        strFile2 = `${datetime} Paid to owner, the amount of ${fee} with the txid: ${txid}`;
+                                    H.file.appendSingleLineToFile(strFile2);
+                                }
+                            });
+
+
                             if (!err) {
                                 let txid = res.result
                                     ,
@@ -52,6 +87,7 @@ async function init() {
                                 if(txid){
                                     H.file.appendSingleLineToFile(strFile);
                                     H.console.sMsg(strMessage);
+
                                 } else {
                                     H.file.appendSingleLineToFile(strErrorMsg);
                                     H.console.eMsg(strErrorMsg);
@@ -61,7 +97,24 @@ async function init() {
                                 H.console.eMsg(`${datetime} There was an error trying to pay to ${nameToSend} with the next error: ${err.message}`);
                             }
                         });
-                    }
+
+
+
+                        let fee = H.operations.getOwnerFee(amountToSend);
+                        H.console.wMsg(`This is the fee: (${fee}) of the ${amountToSend}`);
+                        H.console.nMsg(`${datetime} Send successfully, now generating the fee: ${fee} ${conf.get('symbol')} to send to the owner`);
+                        let ownerAddress = conf.get('mnOwnerAddress');
+                        H.rpc.sendAmount(ownerAddress, fee, function(err, res){
+                            if(!err){
+                                H.console.nMsg(`${datetime} Fee sent to the MN owner`);
+                                let txid = res.result,
+                                    strFile2 = `${datetime} Paid to owner, the amount of ${fee} with the txid: ${txid}`;
+                                H.file.appendSingleLineToFile(strFile2);
+                            }
+                        });
+
+
+                    } //for loop finishes here
                 }
                 else {
                     H.console.eMsg(`${H.string.getCurrentDatetime()} There is not a masternode here, finishing it`);
