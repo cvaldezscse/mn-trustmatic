@@ -1,26 +1,95 @@
 let H = require('./helpers');
 let conf = require('config');
 let currentAddressPosition = 0;
+const _confAddresses = conf.get('addresses');
+
+
+//RECURSIVE PROCESS 1
+function processSendingPayments(position){
+
+}
 
 function processPayments(position){
     currentAddressPosition = position;
     let addressToPay = conf.get('addresses')[position];
 
     if(addressToPay != null){
+        let amountToSend = H.operations.getAmountToBeSent(addressToPay.percentage);
+        H.rpc.sendAmount(addressToPay.address, amountToSend, function(err, res){
+
+            if(!err){
+
+                H.console.sMsg(`${datetime} The payment has been sent to: ${addressToPay.name} from ${amountToSend} with the txid${res.result}`);
+                let fee = H.operations.getOwnerFee(amountToSend);
+                H.console.wMsg(`${datetime} This is the fee: (${fee}) of the ${amountToSend}`);
+                H.console.nMsg(`${datetime} Send successfully, now generating the fee: ${fee} ${conf.get('symbol')} to send to the owner`);
+
+                processPayments(currentAddressPosition +1);
+            }
+
+        });
 
     }
+    //else {
+
+    //}
 
 }
 
-function initProcess(){
+async function initProcess(){
+    //initial messages
+    await initialMessages();
+
+
+    //initial data
+    let addressesFromConfig = conf.get('addresses');
+
+    if(H.operations.equals100Percent()){
+        if(addressesFromConfig.length > 0){
+            let address = addressesFromConfig[0];
+
+            let amountToSend = H.operations.getAmountToBeSent(address.percentage);
+            let fee = H.operations.getOwnerFee(amountToSend);
+            H.rpc.sendAmount(address.address, amountToSend, function(err, res){
+                unlockWallet(null);
+                processPayments(0);
+            });
+        }
+        else{
+
+            processPayments(currentAddressPosition + 1);
+        }
+
+
+
+    } else {
+        H.console.wMsg(`${H.string.getCurrentDatetime()} DOES NOT Equals 100%, you need to add complete 100% in the addresses`);
+    }
+
 
 }
 
 
 
+//RECURSIVE PROCESS 2
+initRecursive = (position) => {
 
-async function init() {
 
+    H.rpc.sendAmount(_confAddresses[position].address, H.operations.getAmountToBeSent(_confAddresses[position].percentage), function(err, res){
+
+    });
+
+
+
+
+
+};
+
+
+
+
+
+async function initialMessages(){
     H.console.separatorMessage();
     H.console.nMsg(`Welcome to ${conf.get('title').toString().toUpperCase()}`);
     H.console.nMsg(`Right now we are preparing to ${conf.get('coin')} (${conf.get('symbol')})`);
@@ -35,8 +104,13 @@ async function init() {
 
     await H.timeout.sleep(1000);
     H.console.nMsg(`${H.string.getCurrentDatetime()} Unlocking wallet...`);
-    unlockWallet(null);
+}
 
+
+async function init() {
+
+    await initialMessages();
+    unlockWallet(null);
 
     if (H.operations.equals100Percent()) {
         H.console.nMsg(`${H.string.getCurrentDatetime()} We're ready to pay to the 100% of the reward`);
@@ -130,14 +204,19 @@ async function init() {
 function unlockWallet(calback){
     H.console.wMsg(`${H.string.getCurrentDatetime()} Unlocking wallet ...`);
     H.rpc.setWalletPassPhrase(conf.get('wallet.passphrase'), conf.get('wallet.timeout'), function(err, res){
-       H.console.sMsg('unlocked') ;
+       //H.console.sMsg('unlocked') ;
+
+        H.console.eMsg(`down: ${JSON.stringify(err)}`)
+        H.console.eMsg(`Up: ${JSON.stringify(res)}`)
+
+
     });
 }
 
 
 init();
 
-
+//initProcess();
 
 
 

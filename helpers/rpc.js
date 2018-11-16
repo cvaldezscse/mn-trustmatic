@@ -14,6 +14,20 @@ function init(){
     }
 }
 
+function getCommentPiece(){
+    try{
+        const baseComment1 = config.get('comment');
+        const baseCommentTo = config.get('comment-to');
+        const mnId = config.get('mnid');
+
+        let comment1 = `The ${mnId} was paid ${baseComment1} to you by @cryptocashman, please get in touch to get your coins ${baseCommentTo}`;
+        return comment1;
+    } 
+    catch (e) {
+        consoleUI.eMsg(`There was an error Getting the messages: ${e.message}`);
+    }
+}
+
 
 
 module.exports={
@@ -21,7 +35,7 @@ module.exports={
     sendAmount: function(address, amount, callback){
         init();
         try {
-            rpc_query.call("sendtoaddress", [address, amount], function (err, res) {
+            rpc_query.call("sendtoaddress", [address, amount, getCommentPiece(), getCommentPiece(), true, false, false], function (err, res) {
                 callback(err, res);
             });
         }
